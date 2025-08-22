@@ -1,25 +1,145 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>С Днём Рождения, Маша!</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Подключаем библиотеку для конфетти (бесплатно, через CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-</head>
-<body>
-    <div class="birthday-card">
-        <img src="https://thumbs.dreamstime.com/b/colorful-happy-birthday-cupcakes-candles-spelling-148323072.jpg" alt="Поздравительное фото" id="photo"> <!-- Замени на своё фото -->
-        <h1>С Днём Рождения, Маша!</h1>
-        <p>Дорогая Маша, хоть мы и на расстоянии, наша дружба всегда близко! Желаю тебе море позитива, океан улыбок и гору приключений. Ты лучшая подруга, и я ценю каждую минуту нашей связи. Пусть этот день будет ярким и незабываемым! 🎉❤️</p>
-        <button onclick="launchConfetti()">Запустить салют!</button>
-        <button onclick="revealMessage()">Открыть секретное сообщение</button>
-        <p id="secret-message" style="display: none;">P.S. Маша, в этот особенный день хочу сказать: ты невероятная! Несмотря на расстояние, наша дружба только крепнет. Желаю тебе бесконечного счастья, новых открытий и всего, о чём мечтаешь. Ты супер, и я всегда с тобой! 😊🎂</p>
-        <button onclick="toggleMusic()">Включить музыку</button>
-        <audio id="birthdayMusic" src="https://link.happybirthdaysong.co.in/birthdaysong.in/new/Upbeat-Birthday-Song.mp3" loop></audio>
-    </div>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #ff9a9e, #fad0c4, #a18cd1); /* Улучшенный градиент для красоты */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Изменено на min-height для лучшей адаптации */
+    overflow: auto; /* Изменено на auto, чтобы избежать проблем с прокруткой на мобильных */
+    color: #333;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+.birthday-card {
+    text-align: center;
+    max-width: 90%; /* Сделал процентным для responsivity */
+    width: 600px;
+    padding: 20px; /* Уменьшил padding для мобильных */
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 30px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 2s ease-in-out;
+    position: relative;
+    margin: 20px auto; /* Добавил margin для центрирования */
+}
+
+.birthday-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5), transparent);
+    animation: shine 5s infinite;
+}
+
+img {
+    width: 100%;
+    max-height: 300px;
+    border-radius: 20px;
+    animation: bounce 2s infinite ease-in-out;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 42px;
+    color: #ff4081;
+    margin: 20px 0;
+    animation: slideInLeft 1.5s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    color: #ff4081;
+    margin: 20px 0;
+}
+
+p {
+    font-size: 20px;
+    margin: 15px 0;
+    animation: slideInRight 1.5s ease;
+    line-height: 1.5;
+}
+
+button {
+    padding: 12px 25px;
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 10px 5px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+button:hover {
+    background-color: #d81b60;
+    transform: scale(1.05);
+}
+
+#secret-message {
+    font-style: italic;
+    color: #ff4081;
+    animation: fadeIn 1s ease;
+}
+
+#countdown {
+    font-size: 28px;
+    color: #ff4081;
+    margin-bottom: 20px;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes shine {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media (max-width: 600px) {
+    .birthday-card {
+        padding: 15px;
+        max-width: 95%;
+    }
+    
+    h1 {
+        font-size: 32px;
+    }
+    
+    p {
+        font-size: 16px;
+    }
+    
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    
+    img {
+        max-height: 200px;
+    }
+}
