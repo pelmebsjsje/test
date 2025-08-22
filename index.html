@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>С Днём Рождения, Маша!</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Подключаем библиотеку для конфетти (бесплатно, через CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="birthday-card">
+        <img src="https://thumbs.dreamstime.com/b/colorful-happy-birthday-cupcakes-candles-spelling-148323072.jpg" alt="Поздравительное фото" id="photo"> <!-- Замени на своё фото -->
+        <h1>С Днём Рождения, Маша!</h1>
+        <p>Дорогая Маша, хоть мы и на расстоянии, наша дружба всегда близко! Желаю тебе море позитива, океан улыбок и гору приключений. Ты лучшая подруга, и я ценю каждую минуту нашей связи. Пусть этот день будет ярким и незабываемым! 🎉❤️</p>
+        <button onclick="launchConfetti()">Запустить салют!</button>
+        <button onclick="revealMessage()">Открыть секретное сообщение</button>
+        <p id="secret-message" style="display: none;">P.S. Без лишних слов о любви — просто знай, что ты супер! 😊</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
