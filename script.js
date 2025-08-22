@@ -17,6 +17,15 @@ function revealMessage() {
     }
 }
 
+function toggleMusic() {
+    const music = document.getElementById('birthdayMusic');
+    if (music.paused) {
+        music.play();
+    } else {
+        music.pause();
+    }
+}
+
 // Автоматическая анимация при загрузке
 window.onload = function() {
     // Можно добавить больше, но пока просто
