@@ -26,7 +26,38 @@ function toggleMusic() {
     }
 }
 
-// Автоматическая анимация при загрузке
+function updateCountdown() {
+    const targetDate = new Date("2025-08-28T00:00:00");
+    const now = new Date();
+    const diff = targetDate - now;
+
+    const countdownElement = document.getElementById('countdown');
+
+    if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        countdownElement.innerHTML = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
+    } else {
+        // Когда день рождения наступил, показываем таймер до конца дня
+        const endDate = new Date(targetDate);
+        endDate.setDate(endDate.getDate() + 1);
+        const diffEnd = endDate - now;
+
+        if (diffEnd > 0) {
+            const hours = Math.floor((diffEnd % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diffEnd % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diffEnd % (1000 * 60)) / 1000);
+            countdownElement.innerHTML = `До конца дня рождения: ${hours}ч ${minutes}м ${seconds}с 🎉`;
+        } else {
+            countdownElement.innerHTML = "День рождения прошёл! Надеюсь, было весело! 😊";
+        }
+    }
+}
+
+// Автоматическая анимация и обновление таймера при загрузке
 window.onload = function() {
-    // Можно добавить больше, но пока просто
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 };
