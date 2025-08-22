@@ -6,21 +6,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh; /* Изменено на min-height для лучшей адаптации */
+    overflow: auto; /* Изменено на auto, чтобы избежать проблем с прокруткой на мобильных */
     color: #333;
 }
 
 .birthday-card {
     text-align: center;
-    max-width: 600px; /* Увеличил для лучшей читаемости */
-    padding: 40px;
+    max-width: 90%; /* Сделал процентным для responsivity */
+    width: 600px;
+    padding: 20px; /* Уменьшил padding для мобильных */
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 30px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
     animation: fadeIn 2s ease-in-out;
     position: relative;
-    overflow: hidden;
+    margin: 20px auto; /* Добавил margin для центрирования */
 }
 
 .birthday-card::before {
@@ -36,18 +37,24 @@ body {
 
 img {
     width: 100%;
-    max-height: 300px; /* Увеличил для красоты */
+    max-height: 300px;
     border-radius: 20px;
     animation: bounce 2s infinite ease-in-out;
     margin-bottom: 20px;
 }
 
 h1 {
-    font-size: 42px; /* Больше для акцента */
+    font-size: 42px;
     color: #ff4081;
     margin: 20px 0;
     animation: slideInLeft 1.5s ease;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 24px;
+    color: #ff4081;
+    margin: 20px 0;
 }
 
 p {
@@ -80,6 +87,12 @@ button:hover {
     animation: fadeIn 1s ease;
 }
 
+#countdown {
+    font-size: 28px;
+    color: #ff4081;
+    margin-bottom: 20px;
+}
+
 /* Анимации */
 @keyframes fadeIn {
     from { opacity: 0; transform: scale(0.9); }
@@ -104,4 +117,29 @@ button:hover {
 @keyframes shine {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+/* Медиа-запросы для мобильных устройств */
+@media (max-width: 600px) {
+    .birthday-card {
+        padding: 15px;
+        max-width: 95%;
+    }
+    
+    h1 {
+        font-size: 32px;
+    }
+    
+    p {
+        font-size: 16px;
+    }
+    
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    
+    img {
+        max-height: 200px;
+    }
 }
